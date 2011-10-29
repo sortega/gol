@@ -2,8 +2,10 @@ package gol;
 
 public class World {
     private Cell[][] cells;
+    private final int generation;
 
-    public World(char[][] matrix) {
+    public World(int generation, char[][] matrix) {
+        this.generation = generation;
         createCells(matrix);
         wireCells();
     }
@@ -37,7 +39,8 @@ public class World {
         }
     }
 
-    private World(Cell[][] cells) {
+    private World(int generation, Cell[][] cells) {
+        this.generation = generation;
         this.cells = cells;
     }
 
@@ -61,6 +64,6 @@ public class World {
             }
         }
 
-        return new World(nextCells);
+        return new World(generation + 1, nextCells);
     }
 }
