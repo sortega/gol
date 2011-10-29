@@ -20,4 +20,13 @@ public class WorldTest {
         instance = new World(fullWorld);
         assertArrayEquals(fullWorld, instance.getMatrix());
     }
+
+    @Test
+    public void next1by1World() {
+        char[][] emptyWorld = new char[][] {{'.'}};
+        char[][] fullWorld = new char[][] {{'*'}};
+
+        World instance = new World(fullWorld);
+        assertArrayEquals(emptyWorld, instance.next().getMatrix());
+    }
 }
