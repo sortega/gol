@@ -28,4 +28,15 @@ public class WorldTest {
         World instance = new World(fullWorld);
         assertArrayEquals(emptyWorld, instance.next().getMatrix());
     }
+
+    @Test
+    public void static3x3World() {
+        char[][] static3x3World = new char[][] {
+            { '.', '*', '.'},
+            { '*', '.', '*'},
+            { '.', '*', '.'}
+        };
+        World instance = new World(static3x3World);
+        assertArrayEquals(static3x3World, instance.next().getMatrix());
+    }
 }
