@@ -14,10 +14,10 @@ public class WorldTest {
     public void build1by1Worlds() {
         char[][] emptyWorld = new char[][] {{'.'}};
         World instance = new World(emptyWorld);
-        assertEquals(emptyWorld, instance.getMatrix());
+        assertArrayEquals(emptyWorld, instance.getMatrix());
 
         char[][] fullWorld = new char[][] {{'*'}};
         instance = new World(fullWorld);
-        assertEquals(fullWorld, instance.getMatrix());
+        assertArrayEquals(fullWorld, instance.getMatrix());
     }
 }
