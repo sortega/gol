@@ -22,9 +22,14 @@ public class Cell {
 
     public Cell next() {
         int alives = this.aliveNeightbours();
-        return new Cell(
-                alives >= 2 &&
-                alives <= 3);
+        boolean willLive;
+
+        if (this.alive)
+            willLive = (alives >= 2 && alives <= 3);
+        else
+            willLive = (alives == 3);
+
+        return new Cell(willLive);
     }
 
     private int aliveNeightbours() {
