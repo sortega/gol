@@ -25,6 +25,18 @@ public class World {
 
     }
 
+    private void wireCell(int i, int j) {
+        for(int iOffset = -1; iOffset <= 1; iOffset++) {
+            if (i+iOffset < 0 || i+iOffset >= cells.length) continue;
+
+            for(int jOffset = -1; jOffset <= 1; jOffset++) {
+                if (j+jOffset < 0 || j+jOffset >= cells[i].length)  continue;
+                if (cells[i][j] != cells[i+iOffset][j+jOffset])
+                    cells[i][j].addNeightbour(cells[i+iOffset][j+jOffset]);
+            }
+        }
+    }
+
     private World(Cell[][] cells) {
         this.cells = cells;
     }
@@ -51,18 +63,4 @@ public class World {
 
         return new World(nextCells);
     }
-
-    private void wireCell(int i, int j) {
-        for(int iOffset = -1; iOffset <= 1; iOffset++) {
-            if (i+iOffset < 0 || i+iOffset >= cells.length) continue;
-
-            for(int jOffset = -1; jOffset <= 1; jOffset++) {
-                if (j+jOffset < 0 || j+jOffset >= cells[i].length)  continue;
-                if (cells[i][j] != cells[i+iOffset][j+jOffset])
-                    cells[i][j].addNeightbour(cells[i+iOffset][j+jOffset]);
-            }
-        }
-    }
-
-
 }
