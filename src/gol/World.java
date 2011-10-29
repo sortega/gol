@@ -4,6 +4,11 @@ public class World {
     private Cell[][] cells;
 
     public World(char[][] matrix) {
+        createCells(matrix);
+        wireCells();
+    }
+
+    private void createCells(char[][] matrix) {
         this.cells = new Cell[matrix.length][];
         for (int i=0; i < matrix.length; i++) {
             this.cells[i] = new Cell[matrix[i].length];
@@ -11,6 +16,13 @@ public class World {
                 cells[i][j] = new Cell(matrix[i][j] == '*');
             }
         }
+    }
+
+    private void wireCells() {
+        for (int i=0; i < cells.length; i++)
+            for (int j=0; j < cells.length; j++)
+                wireCell(i, j);
+
     }
 
     private World(Cell[][] cells) {
@@ -39,4 +51,18 @@ public class World {
 
         return new World(nextCells);
     }
+
+    private void wireCell(int i, int j) {
+        for(int iOffset = -1; iOffset <= 1; iOffset++) {
+            if (i+iOffset < 0 || i+iOffset >= cells.length) continue;
+
+            for(int jOffset = -1; jOffset <= 1; jOffset++) {
+                if (j+jOffset < 0 || j+jOffset >= cells[i].length)  continue;
+                if (cells[i][j] != cells[i+iOffset][j+jOffset])
+                    cells[i][j].addNeightbour(cells[i+iOffset][j+jOffset]);
+            }
+        }
+    }
+
+
 }
