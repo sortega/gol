@@ -66,4 +66,8 @@ public class World {
 
         return new World(generation + 1, nextCells);
     }
+
+    public int getGeneration() {
+        return generation;
+    }
 }
