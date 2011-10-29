@@ -21,12 +21,14 @@ public class Cell {
     }
 
     public Cell next() {
-        return new Cell(this.aliveNeightbours() <= 3);
+        int alives = this.aliveNeightbours();
+        return new Cell(
+                alives >= 2 &&
+                alives <= 3);
     }
 
     private int aliveNeightbours() {
         int numAlive = 0;
-
         for(Cell c : neightbours)
             if (c.isAlive())
                 numAlive++;
