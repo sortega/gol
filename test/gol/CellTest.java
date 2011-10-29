@@ -5,9 +5,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CellTest {
+    private Cell instance;
+
+    private void addAliveNeightbours(int number) {
+        for (int i=0; i<number; i++) {
+            Cell aliveNeightbour = new Cell(true);
+            instance.addNeightbour(aliveNeightbour);
+        }
+    }
 
     @Before
     public void setUp() {
+        instance = new Cell(true);
     }
 
     @Test
@@ -18,21 +27,13 @@ public class CellTest {
 
     @Test
     public void deathByOverpopulation() {
-        Cell instance = new Cell(true);
-        for (int i=0; i<4; i++) {
-            Cell aliveNeightbour = new Cell(true);
-            instance.addNeightbour(aliveNeightbour);
-        }
+        addAliveNeightbours(4);
         assertFalse(instance.next().isAlive());
     }
 
     @Test
     public void deathByUnderpopulation() {
-        Cell instance = new Cell(true);
-        for (int i=0; i<1; i++) {
-            Cell aliveNeightbour = new Cell(true);
-            instance.addNeightbour(aliveNeightbour);
-        }
+        addAliveNeightbours(1);
         assertFalse(instance.next().isAlive());
     }
 }
