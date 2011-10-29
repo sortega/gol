@@ -36,4 +36,16 @@ public class CellTest {
         addAliveNeightbours(1);
         assertFalse(instance.next().isAlive());
     }
+
+    @Test
+    public void keptAliveWith2Neighbours() {
+        addAliveNeightbours(2);
+        assertTrue(instance.next().isAlive());
+    }
+
+    @Test
+    public void keptAliveWith3Neighbours() {
+        addAliveNeightbours(3);
+        assertTrue(instance.next().isAlive());
+    }
 }
