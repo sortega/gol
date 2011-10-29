@@ -11,4 +11,11 @@ public class Cell {
         return alive;
     }
 
+    public void addNeightbour(Cell aliveNeightbour) {
+    }
+
+    public Cell next() {
+        return null;
+    }
+
 }

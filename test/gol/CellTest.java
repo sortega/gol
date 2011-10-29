@@ -16,10 +16,13 @@ public class CellTest {
         assertFalse(new Cell(false).isAlive());
     }
 
-//    @Test
-//    public void deathByOverpopulation() {
-//        Cell liveCell = new Cell(true);
-//
-//
-//    }
+    @Test
+    public void deathByOverpopulation() {
+        Cell instance = new Cell(true);
+        for (int i=0; i<4; i++) {
+            Cell aliveNeightbour = new Cell(true);
+            instance.addNeightbour(aliveNeightbour);
+        }
+        assertFalse(instance.next().isAlive());
+    }
 }
