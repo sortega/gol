@@ -25,4 +25,14 @@ public class CellTest {
         }
         assertFalse(instance.next().isAlive());
     }
+
+    @Test
+    public void deathByUnderpopulation() {
+        Cell instance = new Cell(true);
+        for (int i=0; i<1; i++) {
+            Cell aliveNeightbour = new Cell(true);
+            instance.addNeightbour(aliveNeightbour);
+        }
+        assertFalse(instance.next().isAlive());
+    }
 }
