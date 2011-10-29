@@ -27,11 +27,9 @@ public class Cell {
     private int aliveNeightbours() {
         int numAlive = 0;
 
-        for(Cell c : neightbours) {
-            if (c.isAlive()) {
+        for(Cell c : neightbours)
+            if (c.isAlive())
                 numAlive++;
-            }
-        }
         return numAlive;
     }
 
