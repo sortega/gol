@@ -1,5 +1,7 @@
 package gol;
 
+import java.util.Arrays;
+
 public class Matrix<T> {
 
     public interface Transformation<From, To> {
@@ -39,11 +41,33 @@ public class Matrix<T> {
         return matrix;
     }
 
-    private int rows() {
+    public int rows() {
         return this.elems.length;
     }
 
-    private int cols() {
+    public int cols() {
         return this.elems[0].length;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Matrix<T> other = (Matrix<T>) obj;
+        if (!Arrays.deepEquals(this.elems, other.elems)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Arrays.deepHashCode(this.elems);
+        return hash;
     }
 }

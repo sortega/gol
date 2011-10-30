@@ -19,21 +19,23 @@ public class UITest {
                 "1 1\n" +
                 "*\n";
 
-        char[][] matrix = new char[][] {{'*'}};
+        Matrix<Character> matrix = new Matrix<Character>(1, 1,
+                new Character[][] {{'*'}});
 
         World result = UI.readWorld(new StringReader(input));
 
         assertEquals(1, result.getGeneration());
-        assertArrayEquals(matrix, result.getMatrix());
+        assertEquals(matrix, result.getMatrix());
 
     }
 
     @Test
     public void writeWorld() throws Exception {
-        World world = new World(3, new char[][] {
-            { '*', '.' },
-            { '.', '*' },
-        });
+        World world = new World(3, new Matrix<Character>(2, 2,
+                new Character[][] {
+                    { '*', '.' },
+                    { '.', '*' },
+                }));
 
         String output =
                 "Generation 3\n" +

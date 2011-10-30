@@ -5,40 +5,40 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class WorldTest {
-    private char[][] emptyWorld;
-    private char[][] fullWorld;
+    private Matrix<Character> emptyWorld;
+    private Matrix<Character> fullWorld;
 
     @Before
     public void setUp() {
-        emptyWorld = new char[][] {{'.'}};
-        fullWorld = new char[][] {{'*'}};
+        emptyWorld = new Matrix<Character>(1, 1, new Character[][] {{'.'}});
+        fullWorld = new Matrix<Character>(1, 1, new Character[][] {{'*'}});
     }
 
     @Test
     public void build1by1Worlds() {
         World instance = new World(1, emptyWorld);
-        assertArrayEquals(emptyWorld, instance.getMatrix());
+        assertEquals(emptyWorld, instance.getMatrix());
 
         instance = new World(1, fullWorld);
-        assertArrayEquals(fullWorld, instance.getMatrix());
+        assertEquals(fullWorld, instance.getMatrix());
     }
 
     @Test
     public void next1by1World() {
         World instance = new World(1, fullWorld);
         World nextWorld = instance.next();
-        assertArrayEquals(emptyWorld, nextWorld.getMatrix());
+        assertEquals(emptyWorld, nextWorld.getMatrix());
         assertEquals(2, nextWorld.getGeneration());
     }
 
     @Test
     public void static3x3World() {
-        char[][] static3x3World = new char[][] {
+        Matrix<Character> static3x3World = new Matrix<Character>(3, 3, new Character[][] {
             { '.', '*', '.'},
             { '*', '.', '*'},
             { '.', '*', '.'}
-        };
+        });
         World instance = new World(1, static3x3World);
-        assertArrayEquals(static3x3World, instance.next().getMatrix());
+        assertEquals(static3x3World, instance.next().getMatrix());
     }
 }

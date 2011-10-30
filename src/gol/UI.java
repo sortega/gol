@@ -27,16 +27,14 @@ public class UI {
         return Integer.parseInt(matcher.group(1));
     }
 
-    private static char[][] readMatrix(int rows, int cols, BufferedReader input) throws IOException {
-        char[][] matrix = new char[rows][];
+    private static Matrix<Character> readMatrix(int rows, int cols, BufferedReader input) throws IOException {
+        Matrix<Character> matrix = new Matrix<Character>(rows, cols);
 
         for (int i=0; i<rows; i++) {
-            matrix[i] = new char[cols];
             String line = input.readLine();
             String[] token = line.split("\\s");
-            for (int j=0; j<cols; j++) {
-                matrix[i][j] = token[j].charAt(0);
-            }
+            for (int j=0; j<cols; j++)
+                matrix.put(i, j, token[j].charAt(0));
         }
 
         return matrix;
@@ -45,13 +43,11 @@ public class UI {
     public static void writeWorld(World world, Writer writer) {
         PrintWriter output = new PrintWriter(writer);
         output.format("Generation %d\n", world.getGeneration());
-        char[][] matrix = world.getMatrix();
-        output.format("%d %d\n", matrix.length, matrix[0].length);
-        for (int i=0; i<matrix.length; i++) {
-            for (int j=0; j<matrix[i].length; j++) {
-                output.format("%c%c", matrix[i][j], (j == matrix[i].length - 1)? '\n' : ' ');
-            }
-        }
+        Matrix<Character> matrix = world.getMatrix();
+        output.format("%d %d\n", matrix.rows(), matrix.cols());
+        for (int i=0; i<matrix.rows(); i++)
+            for (int j=0; j<matrix.cols(); j++)
+                output.format("%c%c", matrix.get(i, j), (j == matrix.cols() - 1)? '\n' : ' ');
     }
 
 }
