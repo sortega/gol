@@ -12,4 +12,8 @@ public class Matrix<T> {
     public T get(int row, int col) {
         return elems[row][col];
     }
+
+    public void put(int row, int col, T value) {
+        elems[row][col] = value;
+    }
 }
