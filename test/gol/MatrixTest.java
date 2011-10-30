@@ -26,4 +26,17 @@ public class MatrixTest {
         instance.put(0, 0, 13);
         assertEquals((Integer) 13, instance.get(0, 0));
     }
+
+    @Test
+    public void mapMatrix() {
+        instance = new Matrix(2, 2, new Integer[][] {{1, 2}, {3, 4}});
+        Matrix result = instance.map(new Matrix.Transform<Integer, String> () {
+            String transform(Integer value) {
+                return value.toString();
+            }
+        });
+
+        assertEquals("1", result.get(0, 0));
+        assertEquals("4", result.get(1, 1));
+    }
 }
