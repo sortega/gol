@@ -8,10 +8,6 @@ public class MatrixTest {
 
     private Matrix<Integer> instance;
 
-    @Before
-    public void setUp() {
-    }
-
     @Test
     public void buildEmptyMatrix() {
         instance = new Matrix(2, 2);
@@ -30,8 +26,9 @@ public class MatrixTest {
     @Test
     public void mapMatrix() {
         instance = new Matrix(2, 2, new Integer[][] {{1, 2}, {3, 4}});
-        Matrix result = instance.map(new Matrix.Transform<Integer, String> () {
-            String transform(Integer value) {
+        Matrix result = instance.map(new Matrix.Transformation<Integer, String> () {
+            @Override
+            public String transform(Integer value) {
                 return value.toString();
             }
         });
