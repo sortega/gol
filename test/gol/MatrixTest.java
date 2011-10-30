@@ -16,4 +16,11 @@ public class MatrixTest {
             for (int j=0; j<2; j++)
                 assertNull(instance.get(i, j));
     }
+
+    @Test
+    public void modifyMatrix() {
+        Matrix<Integer> instance = new Matrix(1, 1);
+        instance.put(0, 0) = 13;
+        assertEquals(13, instance.get(0, 0));
+    }
 }
